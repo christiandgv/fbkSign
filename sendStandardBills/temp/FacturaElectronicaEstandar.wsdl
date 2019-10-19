@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://siat.impuestos.gob.bo/FacturaElectronicaEstandar" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="https://siat.impuestos.gob.bo/" name="ServicioFacturacionService" targetNamespace="https://siat.impuestos.gob.bo/FacturaElectronicaEstandar">
+  <wsdl:import location="FacturaElectronicaEstandar_dependecy.wsdl" namespace="https://siat.impuestos.gob.bo/">
+    </wsdl:import>
+  <wsdl:binding name="ServicioFacturacionServiceSoapBinding" type="ns1:IServicioFacturaElectronicaEstandar">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="validacionRecepcionPorCufFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validacionRecepcionPorCufFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validacionRecepcionPorCufFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recepcionPaqueteFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="recepcionPaqueteFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="recepcionPaqueteFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificarComunicacion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="verificarComunicacion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verificarComunicacionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionAnulacionFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validacionAnulacionFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validacionAnulacionFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionRecepcionFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validacionRecepcionFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validacionRecepcionFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recepcionFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="recepcionFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="recepcionFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recepcionMasivaFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="recepcionMasivaFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="recepcionMasivaFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionRecepcionMasivaFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validacionRecepcionMasivaFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validacionRecepcionMasivaFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anulacionFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="anulacionFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="anulacionFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionRecepcionPaqueteFacturaElectronicaEstandar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="validacionRecepcionPaqueteFacturaElectronicaEstandar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="validacionRecepcionPaqueteFacturaElectronicaEstandarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioFacturacionService">
+    <wsdl:port binding="tns:ServicioFacturacionServiceSoapBinding" name="ServicioFacturacionPort">
+      <soap:address location="https://presiatservicios.impuestos.gob.bo:39113/FacturaElectronicaEstandar"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

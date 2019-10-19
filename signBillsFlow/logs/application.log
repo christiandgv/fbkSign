@@ -1,0 +1,10 @@
+2019-10-19 17:59:12,114 [WARN] from application in play-dev-mode-akka.actor.default-dispatcher-2 - Using the following cache for assets configuration:
+	 enabledCaching = false
+	 enabledCacheControl = false
+	 defaultCacheControl = public, max-age=3600
+	 aggressiveCacheControl = public, max-age=31536000, immutable
+	 configuredCacheControl:
+
+
+2019-10-19 17:59:12,169 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-2 - Application started (Dev)
+2019-10-19 18:01:50,011 [INFO] from play.core.server.AkkaHttpServer in pool-11-thread-2 - Stopping server...

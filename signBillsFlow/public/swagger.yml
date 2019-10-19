@@ -1,0 +1,155 @@
+swagger: '2.0'
+info:
+  description: Module to singned electronic documents and send to control entity
+  version: 1.0.0
+  title: 'ebillings'
+  termsOfService: 'http://www.krugercorporation.com/terms/'
+  contact:
+    email: cgudino@kruger.com.ec
+  license:
+    name: Kruger 2.0
+    url: 'http://www.krugercorporation.com/licenses/LICENSE-1.0.html'
+host: 'local_api:9000'
+basePath: /fbk/v1
+tags:
+  - name: billings
+schemes:
+  - http
+paths:
+  /billings:
+    post:
+      tags:
+        - billings
+      summary: Billing to process
+      operationId: processBilling
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: metadata to get document
+          required: true
+          schema:
+            $ref: '#/definitions/RequestMessage'
+      responses:
+        '201':
+          description: Sucessfull
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '404':
+          description: Item not found
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/ApiResponse'
+      x-contentType: application/json
+      x-accepts: application/json
+        
+  
+definitions:
+  Billing:
+    type: object
+    required:
+      - accountNum
+      - transDate
+      - invoice
+      - status
+    properties:
+      type:
+        type: string
+        default: billing
+        example: electronicStandart
+      uuid:
+        type: string
+      accountNum:
+        type: string
+      invoice:
+        type: string
+      payload:
+        type: string
+        example: PGZhY3R1cmFFbGVjdHJvbmljYUVzdGFuZGFyIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhzaTpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJmYWN0dXJhRWxlY3Ryb25pY2FFc3RhbmRhci54c2QiPgogIDxjYWJlY2VyYT4KICAgIDxuaXRFbWlzb3I+NDU2NDg5MDEyPC9uaXRFbWlzb3I+CiAgIDxudW1lcm9GYWN0dXJhPjEwMDwvbnVtZXJvRmFjdHVyYT4KICAgIDxjdWY+QjJBRkExMTYxMDAxMzM1MTU2NEQ2NThFRTUwRDJEMkE0QUE2QjY4NTwvY3VmPgogICAgPGN1ZmQ+RjAwRjg0MEQ5MzlBNTUxMjkxM0EwNkZDODhBREVBODQ8L2N1ZmQ+CiAgICA8Y29kaWdvU3VjdXJzYWw+MDwvY29kaWdvU3VjdXJzYWw+CiAgICA8ZGlyZWNjaW9uPkNhbGxlIEp1YW4gUGFibG8gSUkgIzU0PC9kaXJlY2Npb24+CiAgICA8Y29kaWdvUHVudG9WZW50YSB4c2k6bmlsPSJ0cnVlIj48L2NvZGlnb1B1bnRvVmVudGE+CiAgICA8ZmVjaGFFbWlzaW9uPjIwMTktMDctMjZUMTE6MDA6MTIuMjA4PC9mZWNoYUVtaXNpb24+CiAgICA8bm9tYnJlUmF6b25Tb2NpYWw+UGFibG8gTWFtYW5pPC9ub21icmVSYXpvblNvY2lhbD4KICAgIDxjb2RpZ29UaXBvRG9jdW1lbnRvSWRlbnRpZGFkPjE8L2NvZGlnb1RpcG9Eb2N1bWVudG9JZGVudGlkYWQ+CiAgICA8bnVtZXJvRG9jdW1lbnRvPjE1NDg5NzE8L251bWVyb0RvY3VtZW50bz4KICAgIDxjb21wbGVtZW50byB4c2k6bmlsPSJ0cnVlIj48L2NvbXBsZW1lbnRvPgogICAgPGNvZGlnb0NsaWVudGU+UE1hbWFuaTwvY29kaWdvQ2xpZW50ZT4KICAgIDxjb2RpZ29NZXRvZG9QYWdvPjI8L2NvZGlnb01ldG9kb1BhZ28+CiAgICA8bnVtZXJvVGFyamV0YSB4c2k6bmlsPSJ0cnVlIj48L251bWVyb1RhcmpldGE+CiAgICA8bW9udG9Ub3RhbD4yNTwvbW9udG9Ub3RhbD4KICAgIDxtb250b0Rlc2N1ZW50byB4c2k6bmlsPSJ0cnVlIj48L21vbnRvRGVzY3VlbnRvPgogICAgPGNvZGlnb01vbmVkYT42ODg8L2NvZGlnb01vbmVkYT4KICAgIDx0aXBvQ2FtYmlvPjE8L3RpcG9DYW1iaW8+CiAgICA8bW9udG9Ub3RhbE1vbmVkYT4yNTwvbW9udG9Ub3RhbE1vbmVkYT4KICAgIDxsZXllbmRhPkxleSBOwrAgNDUzOiBUaWVuZXMgZGVyZWNobyBhIHJlY2liaXIgaW5mb3JtYWNpw7NuIHNvYnJlIGxhcyBjYXJhY3RlcsOtc3RpY2FzIHkgY29udGVuaWRvcyBkZSBsb3Mgc2VydmljaW9zIHF1ZSB1dGlsaWNlcy48L2xleWVuZGE+CiAgICA8dXN1YXJpbz5wcGVyZXo8L3VzdWFyaW8+CiAgICA8Y29kaWdvRG9jdW1lbnRvU2VjdG9yPjE8L2NvZGlnb0RvY3VtZW50b1NlY3Rvcj4KCTxjb2RpZ29FeGNlcGNpb25Eb2N1bWVudG8geHNpOm5pbD0idHJ1ZSI+PC9jb2RpZ29FeGNlcGNpb25Eb2N1bWVudG8+CiAgPC9jYWJlY2VyYT4KICA8ZGV0YWxsZT4KICAgIDxhY3RpdmlkYWRFY29ub21pY2E+NjIwMTAwPC9hY3RpdmlkYWRFY29ub21pY2E+CiAgICA8Y29kaWdvUHJvZHVjdG9TaW4+ODMxNDE8L2NvZGlnb1Byb2R1Y3RvU2luPgogICAgPGNvZGlnb1Byb2R1Y3RvPkpOLTEzMTIzMTwvY29kaWdvUHJvZHVjdG8+CiAgICA8ZGVzY3JpcGNpb24+SlVHTyBERSBOQVJBTkpBIEVOIFZBU088L2Rlc2NyaXBjaW9uPgogICAgPGNhbnRpZGFkPjEwPC9jYW50aWRhZD4KICAgIDx1bmlkYWRNZWRpZGE+NTg8L3VuaWRhZE1lZGlkYT4KICAgIDxwcmVjaW9Vbml0YXJpbz4yLjU8L3ByZWNpb1VuaXRhcmlvPgogICAgPG1vbnRvRGVzY3VlbnRvIHhzaTpuaWw9InRydWUiPjwvbW9udG9EZXNjdWVudG8+CiAgICA8c3ViVG90YWw+MjU8L3N1YlRvdGFsPgogICAgPG51bWVyb1NlcmllIHhzaTpuaWw9InRydWUiPjwvbnVtZXJvU2VyaWU+Cgk8bnVtZXJvSW1laSB4c2k6bmlsPSJ0cnVlIj48L251bWVyb0ltZWk+CiAgPC9kZXRhbGxlPgo8U2lnbmF0dXJlIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjIj4KPFNpZ25lZEluZm8+CjxDYW5vbmljYWxpemF0aW9uTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvVFIvMjAwMS9SRUMteG1sLWMxNG4tMjAwMTAzMTUiPjwvQ2Fub25pY2FsaXphdGlvbk1ldGhvZD4KPFNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZHNpZy1tb3JlI3JzYS1zaGEyNTYiPjwvU2lnbmF0dXJlTWV0aG9kPgo8UmVmZXJlbmNlIFVSST0iIj4KPFRyYW5zZm9ybXM+CjxUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25hdHVyZSI+PC9UcmFuc2Zvcm0+CjxUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy14bWwtYzE0bi0yMDAxMDMxNSNXaXRoQ29tbWVudHMiPjwvVHJhbnNmb3JtPgo8L1RyYW5zZm9ybXM+CjxEaWdlc3RNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGVuYyNzaGEyNTYiPjwvRGlnZXN0TWV0aG9kPgo8RGlnZXN0VmFsdWU+a0xrUm8zVlZlRytMUThNRC84QjRSS2N2NHhLaTgwdU9Oejl1M0tkMW5lZz08L0RpZ2VzdFZhbHVlPgo8L1JlZmVyZW5jZT4KPC9TaWduZWRJbmZvPgo8U2lnbmF0dXJlVmFsdWU+ClRublBDTUIrUVBpM3J2eHNoSXUzM3EyWmNCQnlGUjJ6V3VDY1IwV2lUQy9pMFhqdDBtbGV2UDQyS0dSaVlHVmdRREdEaGhlRnZtY2cKRzd1VkdzQjJ3elhhVEtnbDRsbEZva0lPbGdrTHNzY3hxV0tWc0Z5dldra2xiMGpjV1pWQmVSZVRJdnI0VVpqdVN1Um1DZ3B0bUJiawplWFV3allRUHJlTXVOaDBnc2E0PQo8L1NpZ25hdHVyZVZhbHVlPgo8S2V5SW5mbz4KPFg1MDlEYXRhPgo8WDUwOUNlcnRpZmljYXRlPgpNSUlESkRDQ0FvMmdBd0lCQWdJQkFEQU5CZ2txaGtpRzl3MEJBUXNGQURDQnJqRUxNQWtHQTFVRUJoTUNaV014RWpBUUJnTlZCQWdNCkNWQnBZMmhwYm1Ob1lURWZNQjBHQTFVRUNnd1dTM0oxWjJWeUlFTnZjbkJ2Y21GMGFXOXVJRk11UVRFYU1CZ0dBMVVFQXd3UlpXTXUKYTNKMVoyVnlZMjl5Y0M1amIyMHhEakFNQmdOVkJBY01CVkYxYVhSdk1SUXdFZ1lEVlFRTERBdFBVRVZTUVVOSlQwNUZVekVvTUNZRwpDU3FHU0liM0RRRUpBUllaY0hwaGNtRjBaVUJsWXk1cmNuVm5aWEpqYjNKd0xtTnZiVEFlRncweE9UQTVNalF3TWpJNU5UWmFGdzB5Ck1EQTVNak13TWpJNU5UWmFNSUd1TVFzd0NRWURWUVFHRXdKbFl6RVNNQkFHQTFVRUNBd0pVR2xqYUdsdVkyaGhNUjh3SFFZRFZRUUsKREJaTGNuVm5aWElnUTI5eWNHOXlZWFJwYjI0Z1V5NUJNUm93R0FZRFZRUUREQkZsWXk1cmNuVm5aWEpqYjNKd0xtTnZiVEVPTUF3RwpBMVVFQnd3RlVYVnBkRzh4RkRBU0JnTlZCQXNNQzA5UVJWSkJRMGxQVGtWVE1TZ3dKZ1lKS29aSWh2Y05BUWtCRmhsd2VtRnlZWFJsClFHVmpMbXR5ZFdkbGNtTnZjbkF1WTI5dE1JR2ZNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0R05BRENCaVFLQmdRQytZdnRBa3VDV0wwZTMKMUJUVUhvdVNzYWRhRHJkalNSVWtwOSszV3FLYWdYZEJhZE41Tk5QWVoyZTRGOFM0Q25LbFBvcnJvalNZQ0dqT2RpN1IrVmxSTjNvNApwejJwVWUzSjM3Zk5lVkx3UUZ0eUxxUVdnaE5yKzQwWFVnNEZXd3VkWFFBUG8zV0RDTUc1UEpvWnBzK0N5Z01qRkxueXcyc0h3TUFWCmhVNVg3UUlEQVFBQm8xQXdUakFkQmdOVkhRNEVGZ1FVOE5nT2c2ZHZ1eFZBTGVBRUhFUDlsVEIzVGNVd0h3WURWUjBqQkJnd0ZvQVUKOE5nT2c2ZHZ1eFZBTGVBRUhFUDlsVEIzVGNVd0RBWURWUjBUQkFVd0F3RUIvekFOQmdrcWhraUc5dzBCQVFzRkFBT0JnUUFGbXk5cApKd0o2MTBTZGp4b2lkZ3FQanZkanNyTEVhbXQwdE9uNDNBUWowb2ROa1VRM2U4ZEM4c01hc3prVnZaaWNWMS8xbUZZeWswMmxYeDJYCmZ0eFIzc3FiSkliTjJzYmNrTjd3cFBzaEc0cHZHWUFnSEUrYlJsSWpDckJTdGJXbjlsc3JESDQ5MFV6Q0crQ1d4aDZ1ZmVMNlBNaUEKeWZhTmRjRDZoRHdrc3c9PQo8L1g1MDlDZXJ0aWZpY2F0ZT4KPC9YNTA5RGF0YT4KPC9LZXlJbmZvPgo8L1NpZ25hdHVyZT48L2ZhY3R1cmFFbGVjdHJvbmljYUVzdGFuZGFyPg==
+      status:
+        type: string
+        example: signed
+      fiscalDocumentCode:
+        type: integer
+        example: 1
+      sectorCode:
+        type: integer
+        example: 1
+      emissionCode:
+        type: integer
+        example: 1
+      modalityCode:
+        type: integer
+        example: 1
+      branchOfficeCode:
+        type: integer
+        example: ""
+      cufd:
+        type: string
+        example: BQUFVQ1p+bEDAyRjE2Mjg3Qk5RSWVKVFVFBMDAwMDgzO
+      cuis:
+        type: string
+        example: E29A4BAD
+      hashFile:
+        type: string
+        example: f631d8941e7b2b86948ea985b8a293f9d4e1ca75770b2d8883f79a3248893886
+      nit:
+        type: integer
+        format: int64
+        example: 379625022
+      cuape:
+        type: string
+        
+  
+  RequestMessage:
+    type: object
+    required:
+      - type
+      - uuid
+    properties:
+      type:
+        type: string
+        example: billingElectronicStandart
+      uuid:
+        type: string
+  
+  ResponseMessage:
+    type: object
+    required:
+      - type
+      - uuid
+    properties:
+      type:
+        type: string
+        example: billingElectronicStandart
+      uuid:
+        type: string
+      receptionCode:
+        type: integer
+        format: int64
+      statusCode:
+        type: integer 
+      responseCodes:
+        type: array
+        items:
+          type: integer 
+  
+  ApiResponse:
+    type: object
+    properties:
+      data:
+        type: object
+      message:
+        type: string
+      error:
+        type: string  

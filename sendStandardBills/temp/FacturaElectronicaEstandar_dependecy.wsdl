@@ -1,0 +1,419 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="https://siat.impuestos.gob.bo/" name="IServicioFacturaElectronicaEstandar" targetNamespace="https://siat.impuestos.gob.bo/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://siat.impuestos.gob.bo/" elementFormDefault="unqualified" targetNamespace="https://siat.impuestos.gob.bo/" version="1.0">
+
+  <xs:element name="anulacionFacturaElectronicaEstandar" type="tns:anulacionFacturaElectronicaEstandar"/>
+
+  <xs:element name="anulacionFacturaElectronicaEstandarResponse" type="tns:anulacionFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="recepcionFacturaElectronicaEstandar" type="tns:recepcionFacturaElectronicaEstandar"/>
+
+  <xs:element name="recepcionFacturaElectronicaEstandarResponse" type="tns:recepcionFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="recepcionMasivaFacturaElectronicaEstandar" type="tns:recepcionMasivaFacturaElectronicaEstandar"/>
+
+  <xs:element name="recepcionMasivaFacturaElectronicaEstandarResponse" type="tns:recepcionMasivaFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="recepcionPaqueteFacturaElectronicaEstandar" type="tns:recepcionPaqueteFacturaElectronicaEstandar"/>
+
+  <xs:element name="recepcionPaqueteFacturaElectronicaEstandarResponse" type="tns:recepcionPaqueteFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="validacionAnulacionFacturaElectronicaEstandar" type="tns:validacionAnulacionFacturaElectronicaEstandar"/>
+
+  <xs:element name="validacionAnulacionFacturaElectronicaEstandarResponse" type="tns:validacionAnulacionFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="validacionRecepcionFacturaElectronicaEstandar" type="tns:validacionRecepcionFacturaElectronicaEstandar"/>
+
+  <xs:element name="validacionRecepcionFacturaElectronicaEstandarResponse" type="tns:validacionRecepcionFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="validacionRecepcionMasivaFacturaElectronicaEstandar" type="tns:validacionRecepcionMasivaFacturaElectronicaEstandar"/>
+
+  <xs:element name="validacionRecepcionMasivaFacturaElectronicaEstandarResponse" type="tns:validacionRecepcionMasivaFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="validacionRecepcionPaqueteFacturaElectronicaEstandar" type="tns:validacionRecepcionPaqueteFacturaElectronicaEstandar"/>
+
+  <xs:element name="validacionRecepcionPaqueteFacturaElectronicaEstandarResponse" type="tns:validacionRecepcionPaqueteFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="validacionRecepcionPorCufFacturaElectronicaEstandar" type="tns:validacionRecepcionPorCufFacturaElectronicaEstandar"/>
+
+  <xs:element name="validacionRecepcionPorCufFacturaElectronicaEstandarResponse" type="tns:validacionRecepcionPorCufFacturaElectronicaEstandarResponse"/>
+
+  <xs:element name="verificarComunicacion" type="tns:verificarComunicacion"/>
+
+  <xs:element name="verificarComunicacionResponse" type="tns:verificarComunicacionResponse"/>
+
+  <xs:complexType name="validacionRecepcionPorCufFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioValidacionRecepcionPorCuf" type="tns:solicitudValidacionRecepcionPorCuf"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="solicitudValidacionRecepcionPorCuf">
+    <xs:sequence>
+      <xs:element name="codigoAmbiente" type="xs:int"/>
+      <xs:element name="codigoDocumentoFiscal" type="xs:int"/>
+      <xs:element name="codigoDocumentoSector" type="xs:int"/>
+      <xs:element name="codigoEmision" type="xs:int"/>
+      <xs:element name="codigoModalidad" type="xs:int"/>
+      <xs:element minOccurs="0" name="codigoPuntoVenta" nillable="true" type="xs:int"/>
+      <xs:element name="codigoSistema" type="xs:string"/>
+      <xs:element name="codigoSucursal" type="xs:int"/>
+      <xs:element name="cuf" type="xs:string"/>
+      <xs:element name="cufd" type="xs:string"/>
+      <xs:element name="cuis" type="xs:string"/>
+      <xs:element name="nit" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionRecepcionPorCufFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="respuesta">
+    <xs:sequence>
+      <xs:element name="codigoEstado" type="xs:int"/>
+      <xs:element name="codigoRecepcion" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="listaCodigosRespuestas" nillable="true" type="xs:int"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="listaDescripcionesRespuestas" nillable="true" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="listaErroresDetalles" nillable="true" type="tns:recepcionErrorDetalleDto"/>
+      <xs:element name="transaccion" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recepcionErrorDetalleDto">
+    <xs:sequence>
+      <xs:element name="codigoRecepcionIndividual" type="xs:long"/>
+      <xs:element minOccurs="0" name="cuf" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="listaCodigosError" nillable="true" type="xs:int"/>
+      <xs:element minOccurs="0" name="numeroFactura" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recepcionPaqueteFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioRecepcion" type="tns:solicitudRecepcion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="solicitudRecepcion">
+    <xs:sequence>
+      <xs:element name="archivo" type="xs:string"/>
+      <xs:element name="codigoAmbiente" type="xs:int"/>
+      <xs:element name="codigoDocumentoFiscal" type="xs:int"/>
+      <xs:element name="codigoDocumentoSector" type="xs:int"/>
+      <xs:element name="codigoEmision" type="xs:int"/>
+      <xs:element name="codigoModalidad" type="xs:int"/>
+      <xs:element minOccurs="0" name="codigoPuntoVenta" nillable="true" type="xs:int"/>
+      <xs:element name="codigoSistema" type="xs:string"/>
+      <xs:element name="codigoSucursal" type="xs:int"/>
+      <xs:element name="cufd" type="xs:string"/>
+      <xs:element name="cuis" type="xs:string"/>
+      <xs:element name="fechaEnvio" type="xs:dateTime"/>
+      <xs:element name="hashArchivo" type="xs:string"/>
+      <xs:element name="nit" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recepcionPaqueteFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="verificarComunicacion">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="verificarComunicacionResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionAnulacionFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioValidacionAnulacion" type="tns:solicitudValidacionAnulacion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="solicitudValidacionAnulacion">
+    <xs:sequence>
+      <xs:element name="codigoAmbiente" type="xs:int"/>
+      <xs:element name="codigoDocumentoFiscal" type="xs:int"/>
+      <xs:element name="codigoDocumentoSector" type="xs:int"/>
+      <xs:element name="codigoEmision" type="xs:int"/>
+      <xs:element name="codigoModalidad" type="xs:int"/>
+      <xs:element name="codigoMotivo" type="xs:int"/>
+      <xs:element minOccurs="0" name="codigoPuntoVenta" nillable="true" type="xs:int"/>
+      <xs:element name="codigoRecepcion" type="xs:long"/>
+      <xs:element name="codigoSistema" type="xs:string"/>
+      <xs:element name="codigoSucursal" type="xs:int"/>
+      <xs:element name="cuf" type="xs:string"/>
+      <xs:element name="cufd" type="xs:string"/>
+      <xs:element name="cuis" type="xs:string"/>
+      <xs:element name="nit" type="xs:long"/>
+      <xs:element name="numeroDocumentoFiscal" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionAnulacionFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionRecepcionFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioValidacionRecepcion" type="tns:solicitudValidacionRecepcion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="solicitudValidacionRecepcion">
+    <xs:sequence>
+      <xs:element name="codigoAmbiente" type="xs:int"/>
+      <xs:element name="codigoDocumentoFiscal" type="xs:int"/>
+      <xs:element name="codigoDocumentoSector" type="xs:int"/>
+      <xs:element name="codigoEmision" type="xs:int"/>
+      <xs:element name="codigoModalidad" type="xs:int"/>
+      <xs:element minOccurs="0" name="codigoPuntoVenta" nillable="true" type="xs:int"/>
+      <xs:element name="codigoRecepcion" type="xs:long"/>
+      <xs:element name="codigoSistema" type="xs:string"/>
+      <xs:element name="codigoSucursal" type="xs:int"/>
+      <xs:element name="cufd" type="xs:string"/>
+      <xs:element name="cuis" type="xs:string"/>
+      <xs:element name="nit" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionRecepcionFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recepcionFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioRecepcion" type="tns:solicitudRecepcion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recepcionFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recepcionMasivaFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioRecepcion" type="tns:solicitudRecepcion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recepcionMasivaFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionRecepcionMasivaFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioValidacionRecepcion" type="tns:solicitudValidacionRecepcion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionRecepcionMasivaFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="anulacionFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioAnulacion" type="tns:solicitudAnulacion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="solicitudAnulacion">
+    <xs:sequence>
+      <xs:element name="codigoAmbiente" type="xs:int"/>
+      <xs:element name="codigoDocumentoFiscal" type="xs:int"/>
+      <xs:element name="codigoDocumentoSector" type="xs:int"/>
+      <xs:element name="codigoEmision" type="xs:int"/>
+      <xs:element name="codigoModalidad" type="xs:int"/>
+      <xs:element name="codigoMotivo" type="xs:int"/>
+      <xs:element minOccurs="0" name="codigoPuntoVenta" nillable="true" type="xs:int"/>
+      <xs:element name="codigoSistema" type="xs:string"/>
+      <xs:element name="codigoSucursal" type="xs:int"/>
+      <xs:element name="cuf" type="xs:string"/>
+      <xs:element name="cufd" type="xs:string"/>
+      <xs:element name="cuis" type="xs:string"/>
+      <xs:element name="nit" type="xs:long"/>
+      <xs:element name="numeroDocumentoFiscal" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="anulacionFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionRecepcionPaqueteFacturaElectronicaEstandar">
+    <xs:sequence>
+      <xs:element name="SolicitudServicioValidacionRecepcion" type="tns:solicitudValidacionRecepcion"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="validacionRecepcionPaqueteFacturaElectronicaEstandarResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RespuestaServicioFacturacion" type="tns:respuesta"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="recepcionPaqueteFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:recepcionPaqueteFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionAnulacionFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:validacionAnulacionFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionPaqueteFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:validacionRecepcionPaqueteFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recepcionMasivaFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:recepcionMasivaFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionMasivaFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:validacionRecepcionMasivaFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionPorCufFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:validacionRecepcionPorCufFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionAnulacionFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:validacionAnulacionFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionMasivaFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:validacionRecepcionMasivaFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recepcionPaqueteFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:recepcionPaqueteFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionPaqueteFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:validacionRecepcionPaqueteFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionPorCufFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:validacionRecepcionPorCufFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificarComunicacion">
+    <wsdl:part element="ns1:verificarComunicacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verificarComunicacionResponse">
+    <wsdl:part element="ns1:verificarComunicacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:validacionRecepcionFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recepcionFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:recepcionFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recepcionFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:recepcionFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="anulacionFacturaElectronicaEstandar">
+    <wsdl:part element="ns1:anulacionFacturaElectronicaEstandar" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="anulacionFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:anulacionFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="recepcionMasivaFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:recepcionMasivaFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validacionRecepcionFacturaElectronicaEstandarResponse">
+    <wsdl:part element="ns1:validacionRecepcionFacturaElectronicaEstandarResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IServicioFacturaElectronicaEstandar">
+    <wsdl:operation name="validacionRecepcionPorCufFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:validacionRecepcionPorCufFacturaElectronicaEstandar" name="validacionRecepcionPorCufFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:validacionRecepcionPorCufFacturaElectronicaEstandarResponse" name="validacionRecepcionPorCufFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recepcionPaqueteFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:recepcionPaqueteFacturaElectronicaEstandar" name="recepcionPaqueteFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:recepcionPaqueteFacturaElectronicaEstandarResponse" name="recepcionPaqueteFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verificarComunicacion">
+      <wsdl:input message="ns1:verificarComunicacion" name="verificarComunicacion">
+    </wsdl:input>
+      <wsdl:output message="ns1:verificarComunicacionResponse" name="verificarComunicacionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionAnulacionFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:validacionAnulacionFacturaElectronicaEstandar" name="validacionAnulacionFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:validacionAnulacionFacturaElectronicaEstandarResponse" name="validacionAnulacionFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionRecepcionFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:validacionRecepcionFacturaElectronicaEstandar" name="validacionRecepcionFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:validacionRecepcionFacturaElectronicaEstandarResponse" name="validacionRecepcionFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recepcionFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:recepcionFacturaElectronicaEstandar" name="recepcionFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:recepcionFacturaElectronicaEstandarResponse" name="recepcionFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recepcionMasivaFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:recepcionMasivaFacturaElectronicaEstandar" name="recepcionMasivaFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:recepcionMasivaFacturaElectronicaEstandarResponse" name="recepcionMasivaFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionRecepcionMasivaFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:validacionRecepcionMasivaFacturaElectronicaEstandar" name="validacionRecepcionMasivaFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:validacionRecepcionMasivaFacturaElectronicaEstandarResponse" name="validacionRecepcionMasivaFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anulacionFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:anulacionFacturaElectronicaEstandar" name="anulacionFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:anulacionFacturaElectronicaEstandarResponse" name="anulacionFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validacionRecepcionPaqueteFacturaElectronicaEstandar">
+      <wsdl:input message="ns1:validacionRecepcionPaqueteFacturaElectronicaEstandar" name="validacionRecepcionPaqueteFacturaElectronicaEstandar">
+    </wsdl:input>
+      <wsdl:output message="ns1:validacionRecepcionPaqueteFacturaElectronicaEstandarResponse" name="validacionRecepcionPaqueteFacturaElectronicaEstandarResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
